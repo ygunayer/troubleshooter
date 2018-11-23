@@ -8,6 +8,7 @@ Entries are vaguely categorized under subsections, and each entry has a subsecti
 **Description:** When using a git command like `git branch -vv`, the output is in `vim` or `less` format where the entire screen is replaced by the said app, as opposed to simply being output in a `cat`-like fashion.
 
 **Explanation:** Git has the concept of *pager*s, which aim to solve the problem of displaying long lines without the ability to navigate through them easily, exactly the same problem that Unix pagers such as `more`, `less` and even `vim` might solve. While this sounds reasonable for a command such as `git log`, commands with reasonably smaller output such as `git branch` also seems to be using a pager now. AFAIK this was not the case before.
+> *Update:* This change seems to be intended, as indicated in the release notes for Git v2.16.0 https://github.com/git/git/blob/master/Documentation/RelNotes/2.16.0.txt#L85-L88
 
 **Solution:** Disable the pager for specific commands by setting the `pager.<command name>` to `false`. For instance:
 ```bash
