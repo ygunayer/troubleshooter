@@ -1,7 +1,7 @@
 # Memory Lane
 Basically a TIL repo that contains a number of small tips and tricks for various topics.
 
-Entries are vaguely categorized under subsections, and each entry has a subsection under its category. The said section is titled with a short description of the corresponding problem, and the details about the issue, the reason or explanation behind it, and its solutions are listed under.
+Entries are vaguely categorized under subsections, and each entry has a subsection under its category. The said section is titled with a short description of the corresponding problem, and contain the details about the issue, the reason or explanation behind it, and its solutions in the section body.
 
 ## Git
 ### Git commands behave like `less` or `vim`
