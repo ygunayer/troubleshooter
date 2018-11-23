@@ -13,3 +13,8 @@ Entries are vaguely categorized under subsections, and each entry has a subsecti
 ```bash
 $ git config --global pager.branch false
 ```
+
+That way, if you ever need the opposite behavior, you can simply use the good ol' `|` operator to pipe the output to your favorite pager.
+```bash
+$ git branch -vv | less
+```
