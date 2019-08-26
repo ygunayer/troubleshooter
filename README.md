@@ -1,5 +1,5 @@
-# Memory Lane
-Basically a TIL repo that contains a number of small tips and tricks for various topics.
+# Troubleshooter
+This is basically a reference book where I explain the reasons behind various issues and provide solutions for them.
 
 Entries are vaguely categorized under subsections, and each entry has a subsection under its category. The said section is titled with a short description of the corresponding problem, and contain the details about the issue, the reason or explanation behind it, and its solution in the section body.
 
@@ -21,7 +21,7 @@ $ git branch -vv | less
 ```
 
 ## Erlang
-### net_kernel:start() Fails on Non-Distributed Nodes
+### `net_kernel:start/1` Fails on Non-Distributed Nodes
 **Description:** Calling `net_kernel:start/1` on a non-distributed Erlang node (aka one started without the `-name` or `-sname` options) fails with `{'EXIT', nodistribution}` error.
 
 **Explanation:** Erlang uses EPMD (Erlang Port-Mapper Daemon) to handle distribution among Erlang nodes, and when the `-name` or `-sname` option is used EPMD is started automatically. However, when these options are omitted, the EPMD is not started, so when `net_kernel:start/1` is called, the node can't reach EPMD as it attempts to register itself.
