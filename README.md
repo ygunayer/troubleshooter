@@ -19,3 +19,17 @@ That way, if you ever need the opposite behavior, you can simply use the good ol
 ```bash
 $ git branch -vv | less
 ```
+
+## Erlang
+### net_kernel:start() Fails on Non-Distributed Nodes
+**Description:** Calling `net_kernel:start/1` on a non-distributed Erlang node (aka one started without the `-name` or `-sname` options) fails with `{'EXIT', nodistribution}` error.
+
+**Explanation:** Erlang uses EPMD (Erlang Port-Mapper Daemon) to handle distribution among Erlang nodes, and when the `-name` or `-sname` option is used EPMD is started automatically. However, when these options are omitted, the EPMD is not started, so when `net_kernel:start/1` is called, the node can't reach EPMD as it attempts to register itself.
+
+**Solution:** Run EPMD manually in daemon mode by executing the following command:
+
+```bash
+$ epmd -daemon
+```
+
+This allows both distributed and non-distributed nodes to become distributed.
