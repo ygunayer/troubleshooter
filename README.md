@@ -33,3 +33,13 @@ $ epmd -daemon
 ```
 
 This allows both distributed and non-distributed nodes to become distributed.
+
+## macOS
+### iTunes Hijacks Media Buttons from Other Apps
+**Description:** When any media key such as Play or Pause is pressed, macOS launches iTunes, even if there's a media-related app such as Spotify running in the background.
+
+**Explanation:** With High Sierra and Mojave, macOS began demanding explicit accessibility permissions for apps to handle user input when they're in the background, apps that can handle media keys don't receive any input unless these permissions are given. Since Apple's sandboxing principles usually don't apply to their own apps, iTunes is capable of receiving those inputs by default, via the hidden iTunes Helper process.
+
+**Solution:** Give the necessary permissions to the app of your choice.
+
+For instance, if you want Spotify to receive your media keys when it's in the background, open up `System Preferences`, go to `Privacy > Accessibility`, press the `+` button and add Spotify to the list of allowed apps. The result is instantaneous, so Spotify will be able receive your input immediately.
