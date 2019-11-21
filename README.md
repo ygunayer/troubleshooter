@@ -20,6 +20,16 @@ That way, if you ever need the opposite behavior, you can simply use the good ol
 $ git branch -vv | less
 ```
 
+### git-gui crashes on macOS
+**Description:** On macOS, git-gui randomly begins to crash immediately after being launched. This issue appears to occur more frequently on multi-display environments.
+
+**Explanation:** Written in Tcl/Tk, git-gui attempts to store its geometry information in git's config so that it can restore it later. Every now and these dimensions turn out to be invalid, and when restored (aka when git-gui is launched), they cause macOS's rendering pipeline to throw an error, crashing the app.
+
+**Solution:** Clear the stored dimensions using the following command
+```bash
+$ git config --local --unset gui.geometry
+```
+
 ## Erlang
 ### `net_kernel:start/1` Fails on Non-Distributed Nodes
 **Description:** Calling `net_kernel:start/1` on a non-distributed Erlang node (aka one started without the `-name` or `-sname` options) fails with `{'EXIT', nodistribution}` error.
