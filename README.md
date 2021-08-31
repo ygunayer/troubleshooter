@@ -53,3 +53,15 @@ This allows both distributed and non-distributed nodes to become distributed.
 **Solution:** Give the necessary permissions to the app of your choice.
 
 For instance, if you want Spotify to receive your media keys when it's in the background, open up `System Preferences`, go to `Privacy > Accessibility`, press the `+` button and add Spotify to the list of allowed apps. The result is instantaneous, so Spotify will be able receive your input immediately.
+
+## Thunderbird
+### Adding a Google Calendar
+**Description:** When adding a Google Mail account to Thunderbird does detect the associated calendar, but doesn't actually import it. If you Google the issue the first result that comes up suggests installing an addon, but it's incredibly outdated as the max. Thunderbird version it supports is 78.x whereas the latest one is 91.x (at the moment of writing).
+
+**Solution:** Add the calendar manually.
+
+Switch to the Calendars tab on Thunderbird, and on Calendars toolbar on the left, click on the plus sign. In the popup window, select "On the Network", and in the next form, enter your e-mail address to the `User name` field, and `https://apidata.googleusercontent.com/caldav/v2/` to the `Location` field.
+
+Now, when you hit the `Find Calendars` button, another popup will open and allow you to select the calendars to sync.
+
+If you have multiple Google Mail accounts on Thunderbird, you can add them individually, but once you've added them, make sure that they're associated with the right e-mail address. To do that, right click on a calendar in the Calendar toolbar, go into Properties, and select the correct address in the `E-mail` field.
