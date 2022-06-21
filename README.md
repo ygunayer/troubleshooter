@@ -65,3 +65,28 @@ Switch to the Calendars tab on Thunderbird, and on Calendars toolbar on the left
 Now, when you hit the `Find Calendars` button, another popup will open and allow you to select the calendars to sync.
 
 If you have multiple Google Mail accounts on Thunderbird, you can add them individually, but once you've added them, make sure that they're associated with the right e-mail address. To do that, right click on a calendar in the Calendar toolbar, go into Properties, and select the correct address in the `E-mail` field.
+
+## Docker on Windows
+### docker and docker-compose Commands Fail on WSL 1
+**Description:** When attempting to run the `docker` and `docker-compose` commands on WSL 1 they fail with a message that starts with the line `The command 'docker' could not be found in this WSL 1 distro.`
+
+**Explanation:** Microsoft has drastically improved the Linux integration in WSL v2, so much so that Docker for Windows uses a WSL2-based Linux instance to run the containers on. As a result of them working actively working on WSL2, however, the WSL1 side of things are neglected.
+
+As long as you enable the `Expose daemon on tcp://localhost:2375 without TLS` setting on Docker Desktop, you can just run `docker.exe` or `docker-compose.exe` on a WSL1 terminal instead of `docker` or `docker-compose` and they work perfectly fine. The reason the latter two don't run is that they're actually pointed towards shell scripts that simply fail without a real reason as soon as they realize the user is running WSL1.
+
+Which is nothing but absurd because it's still perfectly reasonable that users prefer WSL1 over WSL2 because the filesystem performance between the host and the guest systems on WSL2 is a nightmare to the point of being unusable.
+
+**Solution:** Remove the absurd gatekeeping code from the shell scripts at `C:\Program Files\Docker\Docker\resources\bin\docker` and `C:\Program Files\Docker\Docker\resources\bin\docker-compose`.
+
+If you're paranoid like me you can also back those files up, but in the end, both shell scripts can contain something like this:
+
+```bash
+#!/usr/bin/env sh
+#
+# Copyright (c) Docker Inc.
+
+binary=$(basename "$0")
+"$binary.exe" "$@"
+```
+
+...which basically runs `docker.exe` or `docker-compose.exe` whenever you run `docker` or `docker-compose`. Since we only update the contents of those files we don't need to restart our terminals either, they'll just work.
